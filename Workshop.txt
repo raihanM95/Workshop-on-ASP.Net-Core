@@ -1,0 +1,51 @@
+Create "MyFirstCoreApp" project
+
+Create "AppDbContext" class
+
+Install EF Core (v2.1.2)
+
+//
+
+"ConnectionStrings": {
+    "DefaultDBConnection": "Server=DESKTOP-L0RD2H2;Database=MyFirstCoreApp;Integrated Security=True"
+  }
+
+//
+
+services.AddDbContextPool<AppDbContext>(option => option.UseSqlServer(Configuration.GetConnectionString("DefaultDBConnection")));
+
+//
+
+public class Student
+    {
+        public int Id { get; set; }
+        [Required]
+        [Display(Name = "ID")]
+        //[StringLength(10, MinimumLength = 5)]
+        //[MinLength(6, ErrorMessage = "ID minimum 6 character required")]
+        public string StudentId { get; set; }
+        public string Name { get; set; }
+        public string Semester { get; set; }
+    }
+
+//
+
+public class AppDbContext : DbContext
+    {
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+        {
+
+        }
+
+        public DbSet<Student> Students { get; set; }
+    }
+
+//
+
+Add-Migration StudentModel
+
+Update-Database
+
+Add-Migration StudentModelDataAnnotations
+
+<a asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Are sure wants to delete?');">Delete</a>
