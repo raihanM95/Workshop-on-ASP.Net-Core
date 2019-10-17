@@ -1,0 +1,36 @@
+﻿@model MyFirstCoreApp.Models.Course
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Course</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CourseCode)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CourseCode)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CourseTitle)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CourseTitle)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CourseCredit)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CourseCredit)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.CourseId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

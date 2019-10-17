@@ -1,0 +1,39 @@
+﻿@model MyFirstCoreApp.Models.Course
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Course</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CourseCode)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CourseCode)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CourseTitle)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CourseTitle)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CourseCredit)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CourseCredit)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="CourseId" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

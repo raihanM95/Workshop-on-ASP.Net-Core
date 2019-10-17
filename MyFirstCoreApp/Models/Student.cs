@@ -9,6 +9,7 @@ namespace MyFirstCoreApp.Models
     public class Student
     {
         public int Id { get; set; }
+
         [Required]
         [Display(Name = "ID")]
         //[StringLength(10, MinimumLength = 5)]
