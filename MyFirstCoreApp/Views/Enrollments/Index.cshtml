@@ -13,7 +13,10 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Student)
+                Student Id
+            </th>
+            <th>
+                Student Name
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Course)
@@ -26,6 +29,9 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Student.StudentId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Student.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Course.CourseCode)

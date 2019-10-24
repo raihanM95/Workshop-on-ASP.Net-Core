@@ -1,4 +1,5 @@
-﻿@model IEnumerable<MyFirstCoreApp.Models.Student>
+﻿@*@model IEnumerable<MyFirstCoreApp.Models.Student>*@
+@model MyFirstCoreApp.ViewModels.StudentsViewModel
 
 @{
     ViewData["Title"] = "Index";
@@ -7,41 +8,83 @@
 <h2>Index</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    @*<a asp-action="Create">Create New</a>*@
+    <button class="btn btn-info" data-toggle="modal" data-target="#AddModal"><span class="fa fa-user-plus admin-action-icon"></span> Add Student</button>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.StudentId)
+                Student Id
+                @*@Html.DisplayNameFor(model => model.StudentId)*@
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                Name
+                @*@Html.DisplayNameFor(model => model.Name)*@
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Semester)
+                Semester
+                @*@Html.DisplayNameFor(model => model.Semester)*@
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.StudentId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Semester)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Students)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StudentId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Semester)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+<div class="modal fade" id="AddModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="ModalTitle">Add Student</h4>
+                <a href="#" data-dismiss="modal" class="close">&times;</a>
+            </div>
+            <div class="modal-body">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Student.StudentId" class="control-label"></label>
+                        <input asp-for="Student.StudentId" class="form-control" />
+                        <span asp-validation-for="Student.StudentId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Student.Name" class="control-label"></label>
+                        <input asp-for="Student.Name" class="form-control" />
+                        <span asp-validation-for="Student.Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Student.Semester" class="control-label"></label>
+                        <input asp-for="Student.Semester" class="form-control" />
+                        <span asp-validation-for="Student.Semester" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-default" />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>

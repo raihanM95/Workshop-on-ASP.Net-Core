@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MyFirstCoreApp.Models;
+using MyFirstCoreApp.ViewModels;
 
 namespace MyFirstCoreApp.Controllers
 {
@@ -21,7 +22,12 @@ namespace MyFirstCoreApp.Controllers
         // GET: Students
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Students.ToListAsync());
+            var students = await _context.Students.ToListAsync();
+            var studentsView = new StudentsViewModel
+            {
+                Students = students
+            };
+            return View(studentsView);
         }
 
         // GET: Students/Details/5
